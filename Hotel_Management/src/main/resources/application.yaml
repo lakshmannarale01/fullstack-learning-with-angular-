@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/hotel_management
-    username: root
+    username: postgres
     password: root
   jpa:
     hibernate:

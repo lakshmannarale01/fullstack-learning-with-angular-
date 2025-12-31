@@ -3,7 +3,6 @@ package com.hotel.services.Impl;
 import com.hotel.Entity.Hotel;
 import com.hotel.Entity.dto.HotelRequest;
 import com.hotel.Entity.dto.HotelResponse;
-import com.hotel.mapper.HotelMapper;
 import com.hotel.repositories.IHotelRepository;
 import com.hotel.services.IHotelService;
 import lombok.RequiredArgsConstructor;
@@ -18,19 +17,19 @@ import java.util.Optional;
 @Service
 public class HotelServiceImpl implements IHotelService {
     private final IHotelRepository hotelRepository;
-    private final HotelMapper hotelMapper;
+    private final ModelMapper modelMapper;
 
     @Override
     public HotelResponse create(HotelRequest request) {
-        Hotel hotel =  hotelMapper.toEntity(request);
+        Hotel hotel =  modelMapper.map(request, Hotel.class);
         Hotel saved  = hotelRepository.save(hotel);
-        return hotelMapper.toResponse(saved);
+        return modelMapper.map(saved, HotelResponse.class);
     }
 
     @Override
     public List<HotelResponse> getAll() {
        return hotelRepository.findAll().stream()
-                .map(hotelMapper::toResponse)
+                .map(hotel -> modelMapper.map(hotel, HotelResponse.class))
                 .toList();
 
     }
@@ -38,14 +37,14 @@ public class HotelServiceImpl implements IHotelService {
     @Override
     public Optional<HotelResponse> findById(Long id) {
         Optional <HotelResponse> hotelResponse = hotelRepository.findById(id)
-                .map(hotelMapper::toResponse);
+                .map(hotel -> modelMapper.map(hotel, HotelResponse.class));
         return hotelResponse;
     }
 
     @Override
     public HotelResponse update(Hotel hotel) {
         Hotel saved = hotelRepository.save(hotel);
-      return hotelMapper.toResponse(saved);
+      return modelMapper.map(saved, HotelResponse.class);
     }
 
     @Override

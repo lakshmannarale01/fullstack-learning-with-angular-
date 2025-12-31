@@ -9,7 +9,7 @@ version = "1.0-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -44,9 +44,6 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.2.0'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.6.3.jre11'
-
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
 tasks.test {

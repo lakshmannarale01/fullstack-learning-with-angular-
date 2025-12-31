@@ -29,6 +29,7 @@ public class Room {
     private String roomType; // SINGLE, DOUBLE, SUITE, DELUXE
 
     @Column(name = "is_available")
+    @Builder.Default
     private Boolean isAvailable = true;
 
     @Column(precision = 10, scale = 2)
