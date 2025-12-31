@@ -31,6 +31,8 @@ public class User {
     @Column(name = "password_hash", nullable = false)
     private String password;
 
+    @Column(name = "password_key", nullable = false)
+    private String key;
 
     @Column(name = "token", length = 500)
     private String token;
