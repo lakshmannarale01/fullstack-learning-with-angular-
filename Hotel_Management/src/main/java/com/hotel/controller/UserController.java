@@ -1,7 +1,13 @@
 package com.hotel.controller;
 
 
+import com.hotel.Entity.dto.UserDto;
+import com.hotel.services.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,27 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
-//
-//    private IUserService userService;
-//
-//    @PostMapping("/register")
-//    public ResponseEntity<?> register(@RequestBody UserRequest request) {
-//        Map<String, Object> response = new HashMap<>();
-//        try {
-//            Optional<UserResponse> userResponse = userService.findByUsername(request.getUsername());
-//            response.put("success", true);
-//            response.put("message", "Tax Registration created successfully");
-//            return ResponseEntity.ok(userResponse);
-//        } catch (Exception e) {
-//            response.put("success", false);
-//            response.put("message", e.getMessage());
-//            return ResponseEntity.status(400).body(response);
-//        }
-//    }
-//    @GetMapping("/{username}")
-//    public ResponseEntity<?> findByUsername(String username) {
-//   Optional<UserResponse> user  =  userService.findByUsername(username);
-//        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//
-//    }
+private final IUserService userService;
+
+@PostMapping("/login")
+public ResponseEntity login(@RequestBody UserDto userDto) {
+    UserDto user = userService.login(userDto);
+    if(user == null){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+return ResponseEntity.ok(user);
+}
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> register(@RequestBody UserDto userDTO) {
+        UserDto result = userService.register(userDTO);
+        if (result == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(result);
+    }
+
 }

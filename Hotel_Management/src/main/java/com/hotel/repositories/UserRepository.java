@@ -11,11 +11,10 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, String> {
    Optional<User> findByUsername(String username);
 
-    @Query("SELECT u FROM User u WHERE u.email = :email and u.isActive = true")
-   Optional<User> findActiveUserByEmail(@Param("email") String email);
+    @Query("SELECT u FROM User u WHERE u.username = :username and u.isActive = true")
+   Optional<User> findActiveUserByUsername(@Param("username") String username);
 
-    @Query("SELECT COUNT>(u) FROM User u WHERE u.email = :email")
-   boolean existsByEmail(String email);
+   boolean existsByUsername(String username);
 
    List<User> findByRole(String role);
 
