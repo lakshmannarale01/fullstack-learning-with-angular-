@@ -12,7 +12,9 @@ export class UserRegisterComponent {
   message = '';
   loading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(authService) {
+    this.authService = authService;
+  }
 
   onRegister(form) {
     this.submitted = true;

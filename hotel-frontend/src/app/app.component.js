@@ -3,8 +3,7 @@
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.css'],
-    standalone: false
+    styleUrls: ['./app.css']
 })
 export class AppComponent {
   title = 'hotel-frontend';

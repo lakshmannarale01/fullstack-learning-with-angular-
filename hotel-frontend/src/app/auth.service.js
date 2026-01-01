@@ -5,9 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/v1';
+  apiUrl = 'http://localhost:8080/api/v1';
 
-  constructor(private http: HttpClient) {}
+  constructor(http) {
+    this.http = http;
+  }
 
   // Register new user
   register(user) {
@@ -19,4 +21,3 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/users/login`, credentials);
   }
 }
-
