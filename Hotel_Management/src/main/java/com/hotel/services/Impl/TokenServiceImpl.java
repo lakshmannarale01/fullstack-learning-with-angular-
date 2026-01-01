@@ -19,7 +19,7 @@ import java.util.Map;
 public class TokenServiceImpl implements ITokenServices {
 
 
-    private final byte[] key;
+    private final byte[] jwtKey;
 
     @Override
     public String generateToken(String username, String role) {
@@ -37,7 +37,7 @@ public class TokenServiceImpl implements ITokenServices {
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000)); // 1 day
 
         // Sign the token
-        SecretKey secretKey = Keys.hmacShaKeyFor(key);
+        SecretKey secretKey = Keys.hmacShaKeyFor(jwtKey);
         return builder.signWith(secretKey, SignatureAlgorithm.HS256).compact();
     }
 

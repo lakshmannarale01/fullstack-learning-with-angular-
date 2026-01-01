@@ -40,7 +40,7 @@ public class User {
     @Column(name = "role", length = 20)
     private String role;
 
-    @Column(name = "has_password_changed", nullable = false)
+    @Column(name = "has_password_changed")
     private Boolean hasPasswordChanged;
 
     @Column(name = "last_login_at")

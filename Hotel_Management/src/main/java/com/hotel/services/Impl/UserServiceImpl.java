@@ -53,6 +53,7 @@ public class UserServiceImpl implements IUserService {
                 .key(key)
                 .build();
 
+        user.setActive(true);
         userRepository.save(user);
 
         return UserDto.builder()
