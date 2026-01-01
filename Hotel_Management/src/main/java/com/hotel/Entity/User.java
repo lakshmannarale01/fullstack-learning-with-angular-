@@ -2,9 +2,13 @@ package com.hotel.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -31,6 +35,8 @@ public class User {
     @Column(name = "password_hash", nullable = false)
     private String password;
 
+    @Column(name = "password_key")
+    private String key;
 
     @Column(name = "token", length = 500)
     private String token;
@@ -38,14 +44,31 @@ public class User {
     @Column(name = "role", length = 20)
     private String role;
 
-    @Column(name = "has_password_changed", nullable = false)
+    @Column(name = "has_password_changed")
     private Boolean hasPasswordChanged;
 
     @Column(name = "last_login_at")
     private LocalDateTime lastLoginAt;
 
+    @LastModifiedDate
+    @Column(name = "updatedAt")
+    private LocalDate updatedAt;
+
     @CreatedDate
-    private LocalDateTime createdAt;
+    @Column(name = "createdAt", updatable = false)
+    private LocalDate createdAt;
+
+    @LastModifiedBy
+    @Column(name = "updatedBy")
+    private String uploadedBy;
+
+    @CreatedBy
+    @Column(name = "createdBy", updatable = false)
+    private String createdBy;
+
+    @Version
+    @Column(name = "VERSION")
+    private Long version;
 
     @Column(name = "is_active", nullable = false)
     @Builder.Default

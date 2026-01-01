@@ -1,14 +1,15 @@
 package com.hotel.services;
 
 import com.hotel.Entity.User;
-import com.hotel.Entity.dto.UserRequest;
-import com.hotel.Entity.dto.UserResponse;
+import com.hotel.Entity.dto.UserDto;
 
 import java.util.Optional;
 
-public interface IUserService {
-    UserResponse create(UserRequest request);
-    Optional<UserResponse> findByUsername(String username);
-    UserResponse update(User user);
-    void delete(String username);
+public interface IUserService { ;
+
+    UserDto login (UserDto userDto);
+
+    UserDto register(UserDto userDto);
+
+
 }

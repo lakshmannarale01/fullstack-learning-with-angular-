@@ -1,20 +1,13 @@
 package com.hotel.Entity.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class AuthenticationRequest {
     private String username;
     private String password;
-    private String fullName;
-    private String role;
-    private String token;
 }
