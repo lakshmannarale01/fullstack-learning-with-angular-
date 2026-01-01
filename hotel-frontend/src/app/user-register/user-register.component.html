@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>👤 User Registration</h3>
+        </div>
+        <div class="card-body">
+          <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" ngModel required [(ngModel)]="user.username">
+              <div class="invalid-feedback" *ngIf="submitted && !user.username">
+                Username required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" ngModel required email [(ngModel)]="user.email">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" ngModel required minlength="6" [(ngModel)]="user.password">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!registerForm.valid || loading">
+              {{ loading ? 'Registering...' : 'Register' }}
+            </button>
+          </form>
+
+          <div *ngIf="message" class="alert mt-3" [class.alert-success]="success" [class.alert-danger]="!success">
+            {{ message }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
