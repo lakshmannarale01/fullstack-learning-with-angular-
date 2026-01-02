@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- <li class="nav-item active">
+          <a (click)="listHotel()" class="nav-link" >ListHotels</a>
+        </li> -->
+            <li>
+                <a (click)="menu()" class="nav-link">Menu</a>
+            </li>
+            <li (click)="BookRoom()" class="nav-item">
+                <a class="nav-link">Book Room</a>
+            </li>
+            <li class="nav-item">
+                <a (click)="Cancel()" class="nav-link">Cancel Booking</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<label class="logout">
+    <a (click)="logout()" class="btn btn-danger">Logout</a>
+</label>
+
+
+<body>
+
+    <div *ngIf="bookings.length > 0 else nobooking">
+
+        <div class="alert alert-primary" *ngFor="let book of bookings ">
+            customer name : {{book.customerName}}
+            <br/>
+            Hotel Id : {{book.id}}
+            <br/>
+            Booking Id : {{book.bookingId}}
+            <br />
+            Booking Room Number : {{book.roomNo}}
+            <br />
+            booking CheckIn : {{book.checkIn}}
+            <br>
+            booking CheckOut : {{book.checkOut}}
+            <br/>
+          
+            <!-- Hotel Id : {{hotel.id}} -->
+        </div>
+    </div>
+    <ng-template #nobooking>
+        <div class="alert alert-warning">
+            No Bookings Yet
+        </div>
+    </ng-template>
+</body>

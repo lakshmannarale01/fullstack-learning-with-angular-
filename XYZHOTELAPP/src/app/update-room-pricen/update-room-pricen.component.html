@@ -1,0 +1,22 @@
+<body><div class="alert alert-danger">
+    <!-- <select (change)="selectone(rid.value)" 
+            #rid 
+            class="form-control">
+        <option>--select--</option>
+        <option *ngFor="let hot of rooms" [value]="hot.roomNo">
+            {{hot.roomNo}}
+        </option>
+    </select> -->
+    <!-- <div *ngIf="room.roomNo != 0">
+        Room Id : {{room.roomNo}}
+        <br/> -->
+    
+        Room Price : <input [(ngModel)]= "room.price">
+        <br/>
+        <button (click)="updateRoomPrice()" class="btn btn-danger">Update room Price</button>
+    <!-- </div> -->
+   
+    
+</div>
+<router-outlet></router-outlet>
+</body>

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item active">
+        <a (click)="listHotel()" class="nav-link" >ListHotels</a>
+      </li> -->
+      <li>
+        <a (click)="menu()" class="nav-link">Menu</a>
+      </li>
+      <li (click)="AddHotel()" class="nav-item">
+        <a class="nav-link">AddHotel</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="Delete()" class="nav-link">DeleteHotel</a>
+      </li>
+      <li class="nav-item active">
+        <a (click)="UpdateL()" class="nav-link">UpdateHotelLocation</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="UpdateP()" class="nav-link">UpdateHotelPhone</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="Details()" class="nav-link">Details</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+  <label class="logout">
+    <a (click)="logout()" class="btn btn-danger">Logout</a>
+  </label>
+
+
+
+
+
+  <div *ngIf="hotels.length>0 else nohotels">
+    <div class="alert alert-success" *ngFor="let hotel of hotels ">
+   
+      <app-hotel-detail (checkCom)="showData($event)" [hotel]="hotel"></app-hotel-detail>
+    </div>
+  </div>
+
+  <ng-template #nohotels>
+    <div class="alert alert-warning">
+      No hotels Yet
+    </div>
+  </ng-template>
+</body>

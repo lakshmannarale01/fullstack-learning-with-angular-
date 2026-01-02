@@ -1,0 +1,46 @@
+<body>
+  <div>
+    <table class="table">
+      <tr>
+        <th>
+          <div class="card" style="width: 18rem;">
+            <img (click)="Hotel()" class="card-img-top"
+              src="https://img.freepik.com/premium-vector/hotel-logo-simple-illustration_434503-736.jpg?w=2000"
+              alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"></p>
+              
+            </div>
+          </div>
+        </th>
+        <th>
+          <div class="card" style="width: 18rem;">
+            <img (click)="Rooms()" class="card-img-top"
+              src="https://i.pinimg.com/originals/f9/9e/0b/f99e0b812f21d685b09a01fa60ec1cd3.png"
+              alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"></p>
+             
+            </div>
+          </div>
+        </th>
+        <th>
+          <div class="card" style="width: 18rem;">
+            <img (click)="Book()" class="card-img-top"
+              src="https://i.pinimg.com/originals/02/39/23/023923ec8c48342332bc90d115f14083.jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text"></p>
+          
+            </div>
+          </div>
+        </th>
+      </tr>
+      
+        <label class="logout">
+        <a (click)="logout()" class="btn btn-danger" >Logout</a>
+        </label><router-outlet></router-outlet>
+       </table>
+  </div>
+</body>
+

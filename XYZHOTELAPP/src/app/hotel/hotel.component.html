@@ -1,0 +1,19 @@
+<body>
+    <div class="alert alert-primary">
+        Hotel Name : <input class="form-control" type="text" [(ngModel)]="hotel.name">
+
+        Hotel Location : <input class="form-control" type="text" [(ngModel)]="hotel.location">
+
+        Hotel Phone : <input class="form-control" type="text" [(ngModel)]="hotel.phone">
+
+       Hotel Image : <input  class="form-control" (change)="assignFile(pic)" #pic  type="file">
+
+        <button (click)="addHotels()" class="btn btn-dark">
+            Add Hotel
+            <span [class]="className">
+
+            </span>
+        </button>
+
+    </div>
+</body>

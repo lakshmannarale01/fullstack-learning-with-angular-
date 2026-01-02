@@ -1,0 +1,29 @@
+<body>
+  <div class="alert alert-primary">
+
+    <label for="minPrice">Min Price:</label>
+    <input type="number" id="minPrice" #minPrice>
+    <br />
+    <br />
+    <label for="maxPrice">Max Price:</label>
+    <input type="number" id="maxPrice" #maxPrice>
+    <br />
+    <br />
+    <button (click)="getByRange(minPrice,maxPrice)" class="btn btn-dark" type="submit">check by range</button>
+
+  </div>
+  <div *ngIf="filterroom.length > 0 else noroom" class="alert alert-success">
+    <h2>Filtered Rooms</h2>
+    <ul>
+      <li *ngFor="let r of filterroom">
+        roomPrice : ${{ r.price }}
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noroom>
+    <div class="alert alert-warning">
+      No rooms In that range
+    </div>
+  </ng-template>
+</body>

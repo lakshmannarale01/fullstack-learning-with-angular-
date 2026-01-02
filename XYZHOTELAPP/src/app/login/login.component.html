@@ -1,0 +1,29 @@
+<body>
+    <div class="wrapper">
+        
+            <h1>Login</h1>
+            <div class="input-box">
+               
+                <input type="text" class="form-control" [(ngModel)]="user.username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+             
+            </div>
+            <div class="input-box">
+                
+                <input type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" required>
+                <i class='bx bxs-lock'></i>
+            </div>
+
+            <button (click)="loginClick()"  class="btn btn-warning">Login</button>
+            <button (click)="resetLoginForm()"   class="btn">Reset</button>
+
+            <div class="register-link">
+                <p>Don't have an account?
+                    <a href="signup">Register</a>
+                </p>
+
+            </div>
+       
+    </div>
+</body>
+

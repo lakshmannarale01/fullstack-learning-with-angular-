@@ -1,0 +1,24 @@
+<body>
+    <div class="wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" class="form-control" formControlName="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+                <i class='bx bxs-lock'></i>
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-warning">Login</button>
+            <button type="button" (click)="resetLoginForm()" class="btn">Reset</button>
+
+            <div class="register-link">
+                <p>Don't have an account?
+                    <a routerLink="/register">Register</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</body>

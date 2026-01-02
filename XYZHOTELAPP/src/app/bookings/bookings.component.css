@@ -1,0 +1,20 @@
+div{
+    position: relative;
+    float: left;
+}
+.logout{
+
+    position:absolute;
+    right:30px;
+    top:100px;
+    color: #fff;
+ }
+ body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:url('https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2022/04/12/1329/MUMGH-P0765-Inner-Courtyard-Hotel-Exterior-Evening.jpg/MUMGH-P0765-Inner-Courtyard-Hotel-Exterior-Evening.16x9.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}

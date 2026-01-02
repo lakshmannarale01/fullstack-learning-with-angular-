@@ -1,0 +1,26 @@
+<body>
+    <div class="alert alert-danger">
+        <select (change)="selectone(hid.value)" #hid class="form-control">
+            <option>--select--</option>
+            <option *ngFor="let hot of hotels" [value]="hot.id">
+                {{hot.id}}--{{hot.name}}
+            </option>
+        </select>
+        <div *ngIf="hotel.id != 0">
+            Hotel Id : {{hotel.id}}
+
+            <br />
+
+            Hotel name : {{hotel.name}}
+            <br />
+            Hotel Location : {{hotel.location}}
+
+            <br />
+            Hotel Phone : {{hotel.phone}}
+            <br />
+
+        </div>
+
+
+    </div>
+</body>

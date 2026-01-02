@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li>
+            <a (click)="menu()" class="nav-link" >Menu</a>
+          </li>
+        <li class="nav-item">
+          <a  (click)="AddRoom()" class="nav-link" >AddRoom</a>
+        </li>
+        <li class="nav-item">
+          <a  (click)="Range()" class="nav-link" >RoomByRange</a>
+        </li>
+        <li class="nav-item">
+          <a  (click)="Update()" class="nav-link" >UpdateRoomPrice</a>
+        </li>
+        <li class="nav-item">
+            <a  (click)="Delete()" class="nav-link" >DeleteRoom</a>
+          </li>
+       
+      </ul>
+    </div>
+  </nav>
+  <label class="logout">
+    <a (click)="logout()" class="btn btn-danger" >Logout</a>
+  </label>
+
+<body>
+<div *ngIf="hotels.length>0 else nohotel">
+    <div *ngFor="let myhotel of hotels">
+        <div *ngIf="rooms.length > 0 else noroom">
+            <div *ngFor="let room of rooms">
+                <div *ngIf="myhotel.id==room.id" class="alert alert-primary">
+                    
+                   <app-room-detail (checkCom)="showData($event)" [room]="room"></app-room-detail>
+                    <!-- Hotel : {{myhotel.id}} -- {{myhotel.name}}
+                    <br/>
+                    Room Id: {{myroom.roomNo}}
+                    <br />
+                    Rooms Details : {{myroom.details}}
+                    <br />
+                    Room Price : {{myroom.price}} -->
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #nohotel>
+    <div class="alert alert-warning">
+        No Hotel yet
+    </div>
+</ng-template>
+
+<ng-template #noroom>
+    <div class="alert alert-warning">
+        No rooms yet
+    </div>
+</ng-template>
+</body>

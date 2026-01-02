@@ -1,0 +1,44 @@
+<body>
+    <div class="alert alert-primary">
+        <select (change)="selectHotel(hid.value)" #hid class="form-control">
+            <option>--select Hotel--</option>
+            <option *ngFor="let hot of hotels" [value]="hot.id">
+                {{hot.id}}--{{hot.name}}
+            </option>
+        </select>
+        <br />
+
+
+        <select (change)="selectRoom(rid.value)" #rid class="form-control">
+            <option>--select Room--</option>
+            <option *ngFor="let r of rooms" [value]="r.roomNo">
+                {{r.roomNo}}--{{r.details}}
+            </option>
+        </select>
+
+        <div *ngIf="hotel.id != 0">
+
+            Hotel Id : {{hotel.id}}
+            <br />
+            Room Number : {{room.roomNo}}
+            <br>
+            Room Details : {{room.details}}
+            <!-- Room Details : <input class="form-info" type="text" [(ngModel)]="room.details"> -->
+            <br />
+            Customer Name : <input class="form-info" type="text" [(ngModel)]="book.customerName">
+            <br />
+            Room Details : {{room.price}}
+            <!-- Room price : <input class="form-info" type="number" [(ngModel)]="room.price"> -->
+            <br />
+            Booking checkIn :<input class="form-info" type="datetime-local" [(ngModel)]="book.checkIn">
+            <br />
+            
+            Booking checkOut :<input class="form-info" type="datetime-local" [(ngModel)]="book.checkOut">
+
+            <button (click)="bookRoom()" class="btn btn-dark"> book Room<span [class]="className"></span></button>
+        </div>
+
+
+    </div>
+    <router-outlet></router-outlet>
+</body>

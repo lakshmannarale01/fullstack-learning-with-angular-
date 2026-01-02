@@ -1,0 +1,16 @@
+
+<div class="card" style="width: 18rem ;">
+    <img class="card-img-top" [src]="hotel.pic" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{hotel.name}}</h5>
+      Hotel Id : {{hotel.id}}
+      <br />
+      Hotel name : {{hotel.name}}
+      <br />
+      Hotel Location : {{hotel.location}}
+
+      <br />
+      Hotel Phone : {{hotel.phone}}
+    </div>
+  </div>
+  <button (click)="raiseEvent()" class="btn btn-success">Click to check</button>

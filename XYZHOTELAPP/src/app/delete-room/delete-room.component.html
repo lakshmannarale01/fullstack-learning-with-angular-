@@ -1,0 +1,24 @@
+<body><div class="alert alert-danger">
+    <select (change)="selectone(hid.value)" 
+            #hid 
+            class="form-control">
+        <option>--select room--</option>
+        <option *ngFor="let r of rooms" [value]="r.roomNo"> <!--need to ask mam -->
+            {{r.roomNo}}--{{r.price}}
+        </option>
+    </select>
+    <div *ngIf="room.roomNo != 0">
+        Room number : {{room.id}}
+        <br/>
+        Room price : {{room.price}}
+        <br/>
+        Room details: {{room.details}}
+        <br/>
+       
+        <button (click)="deleteRoom()" class="btn btn-danger">Delete room</button>
+    </div>
+    <!-- <button (click)="show()" class="btn btn-warning">Show First</button> -->
+    
+</div>
+<router-outlet></router-outlet>
+</body>

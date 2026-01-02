@@ -1,0 +1,29 @@
+<body>
+    <div class="alert alert-danger">
+    <select (change)="selectbookings(bid.value)" 
+            #bid 
+            class="form-control">
+        <option>--select room--</option>
+        <option *ngFor="let r of bookings" [value]="r.bookingId"> <!--need to ask mam -->
+            {{r.bookingId}}--{{r.roomNo}}
+        </option>
+    </select>
+    <div *ngIf="book.bookingId != 0">
+        Booking  Id : {{book.bookingId}}
+        <br/>
+        Hotel Id : {{book.id}}
+        <br/>
+        Customer Name : {{book.customerName}}
+        <br/>
+       Room No : {{book.roomNo}}
+        <br/>
+       Booking Time: {{book.checkIn}}
+        <br/>
+       
+        <button (click)="cancelBooking()" class="btn btn-danger">cancel booking</button>
+    </div>
+  
+    
+</div>
+<router-outlet></router-outlet>
+</body>
