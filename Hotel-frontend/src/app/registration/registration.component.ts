@@ -16,8 +16,8 @@ export class RegistrationComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.registrationForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
+      fullName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
@@ -32,9 +32,10 @@ export class RegistrationComponent {
   onSubmit() {
     if (this.registrationForm.valid) {
       const userData = {
-        name: this.registrationForm.value.name,
-        email: this.registrationForm.value.email,
-        password: this.registrationForm.value.password
+        username: this.registrationForm.value.username,
+        fullName: this.registrationForm.value.fullName,
+        password: this.registrationForm.value.password,
+        role: 'USER' // Default role
       };
       this.http.post('http://localhost:1998/api/v1/users/register', userData)
         .subscribe(response => {

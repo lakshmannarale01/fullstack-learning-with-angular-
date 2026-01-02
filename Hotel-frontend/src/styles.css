@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background:url('https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-thumb.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: "poppins" , sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
