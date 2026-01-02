@@ -16,7 +16,9 @@
             "outputPath": "dist/hotel-frontend",
             "index": "src/index.html",
             "main": "src/main.js",
-            "polyfills": "src/polyfills.js",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "optimization": false,

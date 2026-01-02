@@ -1,0 +1,22 @@
+/* src/app/app.component.css - Complete & valid */
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  color: #1976d2;
+  text-align: center;  /* Fixed: Added "center" */
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #666;
+  text-align: center;
+}
+
+router-outlet {
+  display: block;
+  margin-top: 20px;
+}
