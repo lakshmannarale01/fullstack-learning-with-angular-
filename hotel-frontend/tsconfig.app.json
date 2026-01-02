@@ -2,14 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "allowJs": true,
+    "checkJs": false
   },
   "files": [
-    "src/main.js",
-    "src/polyfills.js"
+    "src/main.js"
   ],
   "include": [
-    "src/**/*.d.ts",
     "src/**/*.js"
   ]
 }

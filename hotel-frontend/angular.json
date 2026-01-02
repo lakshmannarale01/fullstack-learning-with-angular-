@@ -16,13 +16,12 @@
             "outputPath": "dist/hotel-frontend",
             "index": "src/index.html",
             "main": "src/main.js",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "optimization": false,
             "buildOptimizer": false,
+            "allowedCommonJsDependencies": ["*"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -36,6 +35,21 @@
             "development": {
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "development"
@@ -45,9 +59,33 @@
           "configurations": {
             "development": {
               "buildTarget": "hotel-frontend:build:development"
+            },
+            "production": {
+              "buildTarget": "hotel-frontend:build:production"
             }
           },
           "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "hotel-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
         }
       }
     }
