@@ -1,0 +1,21 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  justify-content: space-between;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.main-content {
+  min-height: calc(100vh - 64px);
+  padding: 20px;
+  background: #f5f5f5;
+}
+a.active {
+  font-weight: bold;
+}
+mat-toolbar {
+  --mdc-toolbar-container-shape: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
