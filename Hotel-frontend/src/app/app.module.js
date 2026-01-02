@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { AppComponent } from './app.component';  // standalone
+import { HomeComponent } from './home/home.component';  // standalone
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppComponent,    // import standalone component here
+    HomeComponent    // import standalone component here if needed
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

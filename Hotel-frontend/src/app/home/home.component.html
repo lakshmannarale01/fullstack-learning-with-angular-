@@ -1,1 +1,66 @@
-<p>home works!</p>
+<div class="home-container">
+
+  <!-- Hero / Banner Section -->
+  <section class="hero">
+    <h1>Welcome to Hotel Management</h1>
+    <p>Book your stay easily and securely</p>
+  </section>
+
+  <!-- Stats Cards Section -->
+  <section class="stats-cards">
+    <div class="stat-card">
+      <h2>Total Hotels</h2>
+      <p>{{ totalHotels }}</p>
+    </div>
+    <div class="stat-card">
+      <h2>Total Bookings</h2>
+      <p>{{ totalBookings }}</p>
+    </div>
+    <div class="stat-card">
+      <h2>Total Users</h2>
+      <p>{{ totalUsers }}</p>
+    </div>
+  </section>
+
+  <!-- Featured Hotels Section -->
+  <section class="featured-hotels">
+    <h2>Featured Hotels</h2>
+    <div class="hotel-card" *ngFor="let hotel of featuredHotels">
+      <h3>{{ hotel.name }}</h3>
+      <p>{{ hotel.city }}</p>
+    </div>
+  </section>
+
+  <!-- Recent Bookings Section -->
+  <section class="recent-bookings">
+    <h2>Recent Bookings</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>Hotel</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let booking of recentBookings">
+        <td>{{ booking.userName }}</td>
+        <td>{{ booking.hotelName }}</td>
+        <td>{{ booking.checkIn }}</td>
+        <td>{{ booking.checkOut }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Offers Section -->
+  <section class="offers">
+    <h2>Special Offers</h2>
+    <div class="offer-card" *ngFor="let offer of offers">
+      <h3>{{ offer.title }}</h3>
+      <p>{{ offer.description }}</p>
+    </div>
+  </section>
+
+</div>
