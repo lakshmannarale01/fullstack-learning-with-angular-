@@ -1,19 +1,13 @@
 ﻿import { Component } from '@angular/core';
 
-@Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.css']
-})
 export class AppComponent {
   title = 'hotel-frontend';
-  username = '';
-
-  register() {
-    const user = {
-      username: this.username
-    };
-    console.log('Register:', user);
-    alert('Sent to Spring Boot: ' + JSON.stringify(user));
-  }
 }
+
+AppComponent.annotations = [
+  new Component({
+    selector: 'app-root',
+    template: '<router-outlet></router-outlet>',
+    styles: []
+  })
+];
