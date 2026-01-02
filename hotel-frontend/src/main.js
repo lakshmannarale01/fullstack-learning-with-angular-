@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';  // Template-driven forms
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter([
-      { path: 'register', loadComponent: () => import('./app/user-register/user-register.component.js') },
+      { path: 'register', loadComponent: () => import('./app/user-register/user-register.component.js').then(m => m.UserRegisterComponent) },
       { path: '', redirectTo: '/register', pathMatch: 'full' }
     ]),
     provideHttpClient(),
