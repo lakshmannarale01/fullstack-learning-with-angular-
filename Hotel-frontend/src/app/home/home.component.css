@@ -4,10 +4,11 @@
 }
 
 .hero {
-  background-color: #f0f8ff;
-  padding: 40px;
-  text-align: center;
+  background-color:transparent;
+  padding: 20px;
+  text-align: left;
   margin-bottom: 30px;
+  color : #eee;
 }
 
 .stats-cards {
