@@ -15,6 +15,9 @@ export class UserRegisterComponent {
   constructor() {}
 
   onRegister() {
-    console.log('Register:', this.user);
+    this.http.post('http://localhost:8080/api/users/register', this.user).subscribe(
+      response => console.log('User registered!', response),
+      error => console.error('Registration failed', error)
+    );
   }
 }
