@@ -10,6 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -19,26 +22,38 @@ public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     @Override
-    public UserDto login(UserDto userDto) {
-        // This method is no longer responsible for authentication.
-        // Authentication is handled by Spring Security.
-        // This method can be removed or repurposed if needed.
-        return null;
+    public UserDto register(UserDto userDTO) {
+        if (userRepository.existsByUsername(userDTO.getUsername())) {
+            throw new RuntimeException("Username is already taken!");
+        }
+        User user = User.builder()
+                .username(userDTO.getUsername())
+                .fullName(userDTO.getFullName())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
+                .role("USER") // Always register as USER
+                .isActive(true)
+                .build();
+
+        User savedUser = userRepository.save(user);
+        return modelMapper.map(savedUser, UserDto.class);
     }
 
     @Override
-    public UserDto register(UserDto userDTO) {
-        User user = User.builder()
-                .username(userDTO.getUsername())
-                .password(passwordEncoder.encode(userDTO.getPassword()))
-                .role(userDTO.getRole())
-                .build();
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> modelMapper.map(user, UserDto.class))
+                .collect(Collectors.toList());
+    }
 
-        user.setActive(true);
-        userRepository.save(user);
+    @Override
+    public UserDto updateUserRole(Long userId, String role) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return modelMapper.map(user, UserDto.class);
+        // Add validation for role if needed (e.g., only "ADMIN" or "USER")
+        user.setRole(role);
+        User updatedUser = userRepository.save(user);
+        return modelMapper.map(updatedUser, UserDto.class);
     }
 }

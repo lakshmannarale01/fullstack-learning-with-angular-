@@ -46,6 +46,9 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
                         
+                        // User Management
+                        .requestMatchers("/api/v1/users/**").hasAuthority("ADMIN")
+
                         // Hotel Endpoints
                         .requestMatchers(HttpMethod.POST, "/api/v1/hotels/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/hotels/**").hasAuthority("ADMIN")

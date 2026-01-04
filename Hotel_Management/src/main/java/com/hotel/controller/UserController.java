@@ -11,10 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,12 +26,13 @@ public class UserController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> register(@RequestBody UserDto userDTO) {
-        UserDto result = userService.register(userDTO);
-        if (result == null) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<?> register(@RequestBody UserDto userDTO) {
+        try {
+            UserDto result = userService.register(userDTO);
+            return ResponseEntity.ok(result);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/login")
@@ -51,5 +51,17 @@ public class UserController {
         final String jwt = jwtUtil.generateToken(user);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PutMapping("/{userId}/role")
+    public ResponseEntity<UserDto> updateUserRole(@PathVariable Long userId, @RequestBody String role) {
+        // The role comes in as a JSON string "ADMIN" or "USER", so we need to remove the quotes.
+        String cleanedRole = role.replace("\"", "");
+        return ResponseEntity.ok(userService.updateUserRole(userId, cleanedRole));
     }
 }

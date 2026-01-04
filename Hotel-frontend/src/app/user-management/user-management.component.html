@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2>User Management</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="d-flex justify-content-center my-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- User Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.fullName }}</td>
+          <td>
+            <select class="form-select"
+                    (change)="onRoleChange(user, $event)"
+                    [disabled]="user.userId === currentUserId">
+              <option [value]="'USER'" [selected]="user.role === 'USER'">USER</option>
+              <option [value]="'ADMIN'" [selected]="user.role === 'ADMIN'">ADMIN</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

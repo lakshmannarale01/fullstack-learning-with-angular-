@@ -16,9 +16,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (!userRepository.existsByUsername("admin@hotel.com")) {
+        if (!userRepository.existsByUsername("admin@gmail.com")) {
             User admin = User.builder()
-                    .username("admin@hotel.com")
+                    .username("admin@gmail.com")
                     .fullName("Admin User")
                     .password(passwordEncoder.encode("password")) // Use a strong password in production
                     .role("ADMIN")

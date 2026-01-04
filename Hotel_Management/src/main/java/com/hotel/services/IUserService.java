@@ -1,15 +1,13 @@
 package com.hotel.services;
 
-import com.hotel.Entity.User;
 import com.hotel.Entity.dto.UserDto;
+import java.util.List;
 
-import java.util.Optional;
-
-public interface IUserService { ;
-
-    UserDto login (UserDto userDto);
+public interface IUserService {
 
     UserDto register(UserDto userDto);
 
+    List<UserDto> getAllUsers();
 
+    UserDto updateUserRole(Long userId, String role);
 }
