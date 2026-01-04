@@ -1,59 +1,73 @@
-# HotelFrontend
+# Hotel Management Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+This is the frontend for the Hotel Management application, built with Angular. It provides a user-friendly interface for customers to book rooms and for administrators to manage the application's data.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Component-Based Architecture:** A clean and modular structure with dedicated components for each feature.
+- **Service Layer:** A well-defined service layer for handling all API communication, making components cleaner and more focused.
+- **JWT Authentication:** Securely stores the JWT token from the login process and automatically attaches it to all subsequent API requests using an `HttpInterceptor`.
+- **Dynamic UI:** The user interface dynamically changes based on the user's role (`ADMIN` vs. `USER`).
+  - Admins see buttons for adding/deleting hotels, rooms, and managing users.
+  - Regular users see a customer-focused view for browsing and booking.
+- **User-Friendly Feedback:** Includes loading spinners during data fetching and clear error messages for a better user experience.
 
-```bash
-ng serve
-```
+## Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 17** (Standalone Components)
+- **TypeScript**
+- **Bootstrap 5:** For responsive design and pre-styled components.
+- **Boxicons:** For icons used throughout the application.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting Started
 
-```bash
-ng generate component component-name
-```
+### Prerequisites
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Node.js and npm:** It is recommended to use the latest LTS (Long-Term Support) version.
+- **Angular CLI:** Install it globally by running:
+  ```bash
+  npm install -g @angular/cli
+  ```
 
-```bash
-ng generate --help
-```
+### Setup and Installation
 
-## Building
+1.  **Install Dependencies:**
+    - Navigate to the `Hotel-frontend` root directory in your terminal.
+    - Run the following command to install all the necessary packages defined in `package.json`:
+      ```bash
+      npm install
+      ```
 
-To build the project run:
+### Running the Application
 
-```bash
-ng build
-```
+1.  **Start the Development Server:**
+    - In the `Hotel-frontend` directory, run:
+      ```bash
+      ng serve
+      ```
+    - This will compile the application and start a local development server.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2.  **Open in Browser:**
+    - Open your web browser and navigate to `http://localhost:4200/`.
+    - The application will automatically reload if you make any changes to the source files.
 
-## Running unit tests
+**Important:** The frontend application requires the backend server to be running simultaneously to function correctly. Make sure your `Hotel_Management` Spring Boot application is running on `http://localhost:1998`.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## Project Structure Overview
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **`src/app/components`**: Contains all the application's components.
+  - `login`, `registration`: Handle user authentication.
+  - `hotel-list`, `add-hotel`: For hotel management.
+  - `room-list`, `add-room`: For room management.
+  - `my-bookings`, `book-room`: For handling reservations.
+  - `user-management`: For admins to manage user roles.
+- **`src/app/services`**: Contains the services that handle API communication.
+  - `auth.service.ts`: Manages user authentication state and JWT decoding.
+  - `hotel.service.ts`, `room.service.ts`, `reservation.service.ts`, `user.service.ts`: Handle CRUD operations for their respective features.
+- **`src/app/auth.interceptor.ts`**: Automatically attaches the JWT `Authorization` header to outgoing API requests.
+- **`src/app/app.routes.ts`**: Defines all the navigation routes for the application.
+- **`src/styles.css`**: For global styles that apply to the entire application.
