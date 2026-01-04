@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Available Hotels</h2>
+    <a routerLink="/add-hotel" class="btn btn-success">Add New Hotel</a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let hotel of hotels">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ hotel.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ hotel.location }}</h6>
+          <p class="card-text">
+            <strong>Rating:</strong> {{ hotel.starRating }} <br>
+            <strong>Rooms:</strong> {{ hotel.totalRooms }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-sm">View Rooms</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteHotel(hotel.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="hotels.length === 0" class="alert alert-info">
+    No hotels found.
+  </div>
+</div>
