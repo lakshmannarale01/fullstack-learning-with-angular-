@@ -9,6 +9,10 @@
   text-align: left;
   margin-bottom: 30px;
   color : #eee;
+  min-height: 100vh;
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .stats-cards {
