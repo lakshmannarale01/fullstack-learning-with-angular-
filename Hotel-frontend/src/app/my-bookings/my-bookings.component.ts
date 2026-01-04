@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 interface Booking {
   id: number;
@@ -21,12 +22,16 @@ interface Booking {
 })
 export class MyBookingsComponent implements OnInit {
   bookings: Booking[] = [];
-  userId: number = 1; // Hardcoded for now
+  userId: number | null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.userId = this.authService.getUserId();
+  }
 
   ngOnInit(): void {
-    this.loadBookings();
+    if (this.userId) {
+      this.loadBookings();
+    }
   }
 
   loadBookings(): void {

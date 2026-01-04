@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-book-room',
@@ -21,12 +22,13 @@ export class BookRoomComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.bookingForm = this.fb.group({
       checkInDate: ['', Validators.required],
       checkOutDate: ['', Validators.required],
-      userId: [1, Validators.required] // Hardcoded for now, should come from auth service
+      userId: [this.authService.getUserId(), Validators.required]
     });
   }
 
@@ -49,7 +51,7 @@ export class BookRoomComponent implements OnInit {
             console.log('Booking successful', res);
             this.successMessage = 'Booking successful!';
             setTimeout(() => {
-              this.router.navigate(['/hotels']);
+              this.router.navigate(['/my-bookings']);
             }, 1500);
           },
           error: (err) => {
