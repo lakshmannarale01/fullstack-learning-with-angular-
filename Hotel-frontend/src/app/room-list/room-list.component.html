@@ -1,10 +1,23 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Rooms</h2>
-    <a [routerLink]="['/add-room', hotelId]" class="btn btn-success">Add New Room</a>
+    <a *ngIf="authService.getUserRole() === 'ADMIN'" [routerLink]="['/add-room', hotelId]" class="btn btn-success">Add New Room</a>
   </div>
 
-  <div class="row">
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="d-flex justify-content-center my-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Room List -->
+  <div *ngIf="!isLoading && !errorMessage" class="row">
     <div class="col-md-4 mb-4" *ngFor="let room of rooms">
       <div class="card h-100">
         <div class="card-body">
@@ -21,15 +34,16 @@
           </p>
           <div class="d-flex justify-content-between">
             <a [routerLink]="['/book-room', room.id]" class="btn btn-primary btn-sm" [class.disabled]="!room.isAvailable">Book Now</a>
-            <button class="btn btn-danger btn-sm" (click)="deleteRoom(room.id)">Delete</button>
+            <button *ngIf="authService.getUserRole() === 'ADMIN'" class="btn btn-danger btn-sm" (click)="deleteRoom(room.id)">Delete</button>
           </div>
         </div>
       </div>
     </div>
+    <div *ngIf="rooms.length === 0" class="alert alert-info">
+      No rooms found for this hotel.
+    </div>
   </div>
-  <div *ngIf="rooms.length === 0" class="alert alert-info">
-    No rooms found for this hotel.
-  </div>
+
   <div class="mt-3">
       <a routerLink="/hotels" class="btn btn-secondary">Back to Hotels</a>
   </div>

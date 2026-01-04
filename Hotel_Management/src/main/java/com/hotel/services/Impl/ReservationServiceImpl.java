@@ -86,7 +86,7 @@ public class ReservationServiceImpl implements IReservationService {
 
     @Override
     public List<ReservationResponse> getByUserId(Long userId) {
-        return reservationRepository.findByUserId(userId).stream()
+        return reservationRepository.findByUser_UserId(userId).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }

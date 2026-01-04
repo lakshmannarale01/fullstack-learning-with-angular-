@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { ReservationService } from '../services/reservation.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-book-room',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule],
   templateUrl: './book-room.component.html',
   styleUrls: ['./book-room.component.css']
 })
@@ -20,10 +21,10 @@ export class BookRoomComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private reservationService: ReservationService
   ) {
     this.bookingForm = this.fb.group({
       checkInDate: ['', Validators.required],
@@ -45,20 +46,19 @@ export class BookRoomComponent implements OnInit {
         roomId: this.roomId
       };
 
-      this.http.post('http://localhost:1998/api/v1/reservations/create-reservation', bookingData)
-        .subscribe({
-          next: (res) => {
-            console.log('Booking successful', res);
-            this.successMessage = 'Booking successful!';
-            setTimeout(() => {
-              this.router.navigate(['/my-bookings']);
-            }, 1500);
-          },
-          error: (err) => {
-            console.error('Error booking room', err);
-            this.errorMessage = 'Failed to book room. Please try again.';
-          }
-        });
+      this.reservationService.createReservation(bookingData).subscribe({
+        next: () => {
+          console.log('Booking successful');
+          this.successMessage = 'Booking successful!';
+          setTimeout(() => {
+            this.router.navigate(['/my-bookings']);
+          }, 1500);
+        },
+        error: (err) => {
+          console.error('Error booking room', err);
+          this.errorMessage = 'Failed to book room. Please try again.';
+        }
+      });
     }
   }
 }

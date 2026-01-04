@@ -21,9 +21,6 @@
         <a class="nav-link" routerLink="/my-bookings">My Bookings</a>
       </li>
       <li class="nav-item">
-        <span class="nav-link">Welcome, {{ authService.getUsername() }}</span>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
       </li>
     </ng-container>

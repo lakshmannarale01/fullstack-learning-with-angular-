@@ -3,6 +3,7 @@ package com.hotel.config;
 import com.hotel.services.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -41,14 +42,25 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/v1/users/register",
                                 "/api/v1/users/login",
-                                "/api/v1/hotels/**",
-                                "/api/v1/rooms/**",
-                                "/api/v1/reservations/**",
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/swagger-resources/**",
-                                "/webjars/**"
+                                "/v3/api-docs/**"
                         ).permitAll()
+                        
+                        // Hotel Endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/v1/hotels/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/hotels/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/hotels/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/hotels/**").authenticated()
+
+                        // Room Endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/v1/rooms/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/rooms/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/rooms/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/rooms/**").authenticated()
+
+                        // Reservation Endpoints
+                        .requestMatchers("/api/v1/reservations/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

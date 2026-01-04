@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RoomService } from '../services/room.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-room',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule],
   templateUrl: './add-room.component.html',
   styleUrls: ['./add-room.component.css']
 })
@@ -19,9 +20,9 @@ export class AddRoomComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private roomService: RoomService
   ) {
     this.roomForm = this.fb.group({
       roomNumber: ['', Validators.required],
@@ -45,20 +46,19 @@ export class AddRoomComponent implements OnInit {
         hotelId: this.hotelId
       };
 
-      this.http.post('http://localhost:1998/api/v1/rooms/create-Room', roomData)
-        .subscribe({
-          next: (res) => {
-            console.log('Room added successfully', res);
-            this.successMessage = 'Room added successfully!';
-            setTimeout(() => {
-              this.router.navigate(['/hotels', this.hotelId, 'rooms']);
-            }, 1500);
-          },
-          error: (err) => {
-            console.error('Error adding room', err);
-            this.errorMessage = 'Failed to add room. Please try again.';
-          }
-        });
+      this.roomService.addRoom(roomData).subscribe({
+        next: () => {
+          console.log('Room added successfully');
+          this.successMessage = 'Room added successfully!';
+          setTimeout(() => {
+            this.router.navigate(['/hotels', this.hotelId, 'rooms']);
+          }, 1500);
+        },
+        error: (err) => {
+          console.error('Error adding room', err);
+          this.errorMessage = 'Failed to add room. Please try again.';
+        }
+      });
     }
   }
 }
