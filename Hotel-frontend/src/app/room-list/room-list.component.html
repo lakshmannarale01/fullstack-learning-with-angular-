@@ -20,7 +20,7 @@
             <small>{{ room.description }}</small>
           </p>
           <div class="d-flex justify-content-between">
-            <button class="btn btn-primary btn-sm" [disabled]="!room.isAvailable">Book Now</button>
+            <a [routerLink]="['/book-room', room.id]" class="btn btn-primary btn-sm" [class.disabled]="!room.isAvailable">Book Now</a>
             <button class="btn btn-danger btn-sm" (click)="deleteRoom(room.id)">Delete</button>
           </div>
         </div>

@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>Book Room</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="checkInDate" class="form-label">Check-in Date</label>
+              <input type="date" id="checkInDate" class="form-control" formControlName="checkInDate">
+              <div *ngIf="bookingForm.get('checkInDate')?.invalid && bookingForm.get('checkInDate')?.touched" class="text-danger">
+                Check-in date is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="checkOutDate" class="form-label">Check-out Date</label>
+              <input type="date" id="checkOutDate" class="form-control" formControlName="checkOutDate">
+              <div *ngIf="bookingForm.get('checkOutDate')?.invalid && bookingForm.get('checkOutDate')?.touched" class="text-danger">
+                Check-out date is required.
+              </div>
+            </div>
+
+            <!-- Hidden User ID field for now -->
+            <input type="hidden" formControlName="userId">
+
+            <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Confirm Booking</button>
+            <a routerLink="/hotels" class="btn btn-secondary ms-2">Cancel</a>
+          </form>
+
+          <div *ngIf="successMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
