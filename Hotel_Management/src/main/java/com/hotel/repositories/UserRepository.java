@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
    Optional<User> findByUsername(String username);
 
     @Query("SELECT u FROM User u WHERE u.username = :username and u.isActive = true")

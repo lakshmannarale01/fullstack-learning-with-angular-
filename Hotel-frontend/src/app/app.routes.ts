@@ -10,5 +10,6 @@ export const routes: Routes = [
   { path: 'add-hotel', loadComponent: () => import('./add-hotel/add-hotel.component').then(m => m.AddHotelComponent) },
   { path: 'hotels/:id/rooms', loadComponent: () => import('./room-list/room-list.component').then(m => m.RoomListComponent) },
   { path: 'add-room/:hotelId', loadComponent: () => import('./add-room/add-room.component').then(m => m.AddRoomComponent) },
-  { path: 'book-room/:roomId', loadComponent: () => import('./book-room/book-room.component').then(m => m.BookRoomComponent) }
+  { path: 'book-room/:roomId', loadComponent: () => import('./book-room/book-room.component').then(m => m.BookRoomComponent) },
+  { path: 'my-bookings', loadComponent: () => import('./my-bookings/my-bookings.component').then(m => m.MyBookingsComponent) }
 ];
