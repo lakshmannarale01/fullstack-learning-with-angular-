@@ -26,11 +26,13 @@ export class LoginComponent {
       this.http.post('http://localhost:1998/api/v1/users/login', this.loginForm.value)
         .subscribe((response: any) => {
           console.log('Login successful', response);
-          // Here you would typically save the token and navigate to a protected route
-          // For now, we'll just navigate to the home/dashboard page
-          this.router.navigate(['/home']);
+          if (response && response.jwt) {
+            localStorage.setItem('token', response.jwt);
+            this.router.navigate(['/home']);
+          }
         }, error => {
           console.error('Login failed', error);
+          alert('Invalid credentials');
         });
     }
   }

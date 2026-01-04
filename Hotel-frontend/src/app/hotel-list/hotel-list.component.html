@@ -15,7 +15,7 @@
             <strong>Rooms:</strong> {{ hotel.totalRooms }}
           </p>
           <div class="d-flex justify-content-between">
-            <button class="btn btn-primary btn-sm">View Rooms</button>
+            <a [routerLink]="['/hotels', hotel.id, 'rooms']" class="btn btn-primary btn-sm">View Rooms</a>
             <button class="btn btn-danger btn-sm" (click)="deleteHotel(hotel.id)">Delete</button>
           </div>
         </div>
